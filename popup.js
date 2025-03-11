@@ -1,4 +1,6 @@
 // popup.js
+let timeLeftInterval = null;
+
 document.addEventListener('DOMContentLoaded', function () {
     const startBtn = document.getElementById('startBtn');
     const stopBtn = document.getElementById('stopBtn');
@@ -34,7 +36,10 @@ document.addEventListener('DOMContentLoaded', function () {
     chrome.storage.local.get('isActive', function (result) {
         if (result.isActive) {
             updateTimeLeft();
-            setInterval(updateTimeLeft, 1000);
+            if (timeLeftInterval) {
+                clearInterval(timeLeftInterval);
+            }
+            timeLeftInterval = setInterval(updateTimeLeft, 1000);
         }
     });
 
@@ -78,7 +83,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Start updating time left display
         updateTimeLeft();
-        setInterval(updateTimeLeft, 1000);
+        if (timeLeftInterval) {
+            clearInterval(timeLeftInterval);
+        }
+        timeLeftInterval = setInterval(updateTimeLeft, 1000);
     });
 
     // Stop auto refresh

@@ -5,7 +5,8 @@
     "description": "Automatically refreshes the current page after a random time interval",
     "permissions": [
         "activeTab",
-        "storage"
+        "storage",
+        "alarms"
     ],
     "action": {
         "default_popup": "popup.html",
@@ -16,7 +17,8 @@
         }
     },
     "background": {
-        "service_worker": "background.js"
+        "service_worker": "background.js",
+        "type": "module"
     },
     "content_scripts": [
         {
